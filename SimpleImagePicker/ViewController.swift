@@ -69,7 +69,8 @@ UINavigationControllerDelegate {
     }
 
     //MARK: Text Field Functions
-    
+    NSLog()
+    }
 }
 
     
