@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SimpleImagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="SimpleImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,26 +37,50 @@
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VbR-Te-poH">
                                 <rect key="frame" x="70" y="70" width="235" height="235"/>
+                                <color key="backgroundColor" red="0.440739084" green="0.9127574839" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.440739084" green="0.9127574839" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="235" id="9bx-eL-Kve"/>
                                     <constraint firstAttribute="height" constant="235" id="NKG-MP-eeq"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="425-5r-usn">
+                                <rect key="frame" x="82" y="87" width="211" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dHe-jY-bfK">
+                                <rect key="frame" x="82" y="258" width="211" height="35"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ikt-2Q-g5M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3Ya-jV-vO5"/>
                             <constraint firstItem="VbR-Te-poH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3fJ-Yy-mO4"/>
+                            <constraint firstItem="425-5r-usn" firstAttribute="top" secondItem="VbR-Te-poH" secondAttribute="top" constant="17" id="6IM-M2-aCZ"/>
+                            <constraint firstItem="dHe-jY-bfK" firstAttribute="leading" secondItem="VbR-Te-poH" secondAttribute="leading" constant="12" id="97X-xS-hA9"/>
+                            <constraint firstItem="VbR-Te-poH" firstAttribute="trailing" secondItem="425-5r-usn" secondAttribute="trailing" constant="12" id="IeJ-yh-Hwe"/>
+                            <constraint firstItem="dHe-jY-bfK" firstAttribute="top" secondItem="VbR-Te-poH" secondAttribute="top" constant="188" id="X6j-EH-ai9"/>
+                            <constraint firstItem="VbR-Te-poH" firstAttribute="bottom" secondItem="425-5r-usn" secondAttribute="bottom" constant="188" id="anA-VB-PiU"/>
+                            <constraint firstItem="425-5r-usn" firstAttribute="leading" secondItem="VbR-Te-poH" secondAttribute="leading" constant="12" id="dDG-fj-ytA"/>
+                            <constraint firstItem="VbR-Te-poH" firstAttribute="bottom" secondItem="dHe-jY-bfK" secondAttribute="bottom" constant="12" id="gog-Np-FZD"/>
                             <constraint firstItem="ikt-2Q-g5M" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hIY-Xj-S7e"/>
                             <constraint firstItem="ikt-2Q-g5M" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="jMk-eB-0eF"/>
                             <constraint firstItem="VbR-Te-poH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="ncO-Dk-EgV"/>
+                            <constraint firstItem="VbR-Te-poH" firstAttribute="trailing" secondItem="dHe-jY-bfK" secondAttribute="trailing" constant="12" id="osg-Jg-H9R"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bottomField" destination="dHe-jY-bfK" id="a9L-Eu-oax"/>
                         <outlet property="imagePickerView" destination="VbR-Te-poH" id="S9k-cU-tdw"/>
                         <outlet property="takePhotoButton" destination="tmi-5l-emh" id="cHW-2V-p4M"/>
+                        <outlet property="topField" destination="425-5r-usn" id="gix-cf-sDt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
