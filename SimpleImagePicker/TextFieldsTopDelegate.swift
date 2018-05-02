@@ -6,7 +6,6 @@
 //  Copyright © 2018 Developed by Gjoraas. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class TextFieldsTopDelegate: NSObject, UITextFieldDelegate {
@@ -14,6 +13,8 @@ class TextFieldsTopDelegate: NSObject, UITextFieldDelegate {
 //     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 //        return true
 //    }
+    
+
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text!.isEmpty {

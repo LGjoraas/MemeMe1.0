@@ -29,6 +29,8 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var takePhotoButton: UIBarButtonItem!
     @IBOutlet weak var topField: UITextField!
     @IBOutlet weak var bottomField: UITextField!
+    @IBOutlet weak var toolBar: UIToolbar!
+   
     
     // MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -48,6 +50,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         
         bottomField.text = "BOTTOM"
         bottomField.textAlignment = NSTextAlignment.center
+    
     }
     
     // MARK: ViewWillAppear
@@ -64,11 +67,13 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     // MARK: Keybaord Functions
     @objc func keyboardWillShow(_ notification:Notification) {
-        imagePickerView.frame.origin.y = -getKeyboardHeight(notification)
+        imagePickerView.frame.size.height = -getKeyboardHeight(notification)
+        
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
-        imagePickerView.frame.origin.y = 0
+       imagePickerView.frame.size.height = getKeyboardHeight(notification)
+        
     }
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         let userInfo = notification.userInfo
@@ -77,18 +82,14 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
     func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)),
-                                               name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)),
-                                               name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
-    
-    
     
     // MARK: ImagePicker Functions
     //what happens when picking an image and dismissing
@@ -120,7 +121,68 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         pickerController.cameraCaptureMode = .photo
         present(pickerController, animated: true, completion: nil)
     }
+ 
+    // MARK: Meme Image Creation
+    func save() {
+        // Create the meme
+        let meme = Meme(topTextField: topField.text!, bottomTextField: bottomField.text!, originalImage: imagePickerView.image!, memeImage: generateMemedImage())
+        //how to save:
+        
+    }
+    
+    func generateMemedImage() -> UIImage {
+      
+        // MARK: Hide toolbar and navbar
+        self.toolBar.isHidden = true
+        self.navigationController?.isToolbarHidden = true
+        
+        // MARK: Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        // MARK: Show toolbar and navbar
+        self.toolBar.isHidden = false
+        self.navigationController?.isToolbarHidden = false
+        
+        return memeImage
+    }
+    
+    // MARK: Share image function
+    @IBAction func shareButton(_ sender: Any) {
+     
+        // image to share
+       let image : UIImage = self.generateMemedImage()
+        
+        // set up activity view controller
+        let imageToShare = [ image ]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.completionWithItemsHandler =  {
+            (activity, success, items, error) in
+            if(success && error == nil){
+                self.save()
+                self.dismiss(animated: true, completion: nil);
+            } else if (error != nil){
+                //log the error
+            }
+        }
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+
+//        generate a memed image
+//        define an instance of the ActivityViewController
+//        pass the ActivityViewController a memedImage as an activity item
+//        present the ActivityViewController
+        
+    }
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        
+    }
     
 }
+    
+
 
     
