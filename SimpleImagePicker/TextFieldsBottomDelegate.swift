@@ -10,6 +10,7 @@ import UIKit
 
 class TextFieldsBottomDelegate: NSObject, UITextFieldDelegate {
     
+    var bottomFieldTextClicked: Bool = false
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
       
@@ -17,13 +18,14 @@ class TextFieldsBottomDelegate: NSObject, UITextFieldDelegate {
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text!.isEmpty {
-        textField.text = ""
+            textField.text = ""
         }
+        bottomFieldTextClicked = true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        
+        bottomFieldTextClicked = false
         return true;
     }
     

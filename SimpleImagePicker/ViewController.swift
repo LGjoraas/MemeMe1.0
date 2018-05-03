@@ -16,6 +16,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     let textFieldsTopDelegate = TextFieldsTopDelegate()
     let textFieldsBottomDelegate = TextFieldsBottomDelegate()
     
+    
     // MARK: Attributes
     let memeTextAttributes:[String: Any] = [
         NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
@@ -65,16 +66,28 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         unsubscribeFromKeyboardNotifications()
     }
     
+    
     // MARK: Keybaord Functions
     @objc func keyboardWillShow(_ notification:Notification) {
-        imagePickerView.frame.size.height = -getKeyboardHeight(notification)
-        
+        //imagePickerView.frame.size.height = imagePickerView.frame.size.height - getKeyboardHeight(notification)
+        if (textFieldsTopDelegate.topFieldTextClicked) {
+            view.frame.origin.y = 0
+        }
+        if (textFieldsBottomDelegate.bottomFieldTextClicked) {
+            view.frame.origin.y = -getKeyboardHeight(notification)
+        }
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
-       imagePickerView.frame.size.height = getKeyboardHeight(notification)
-        
+        //imagePickerView.frame.size.height = imagePickerView.frame.size.height + getKeyboardHeight(notification)
+        if (textFieldsTopDelegate.topFieldTextClicked) {
+            view.frame.origin.y = 0
+        }
+        if (textFieldsBottomDelegate.bottomFieldTextClicked) {
+            view.frame.origin.y = 0
+        }
     }
+
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue //of CGRect
