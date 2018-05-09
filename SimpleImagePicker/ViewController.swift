@@ -36,22 +36,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        //to check that imageView is loading properly, give it a color:
-        imagePickerView.backgroundColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)
-        imagePickerView.clipsToBounds = true
-        
-        self.topField.delegate = self.textFieldsTopDelegate
-        self.bottomField.delegate = self.textFieldsBottomDelegate
-        
-        topField.defaultTextAttributes = memeTextAttributes
-        bottomField.defaultTextAttributes = memeTextAttributes
-        
-        topField.text = "TOP"
-        topField.textAlignment = NSTextAlignment.center
-        
-        bottomField.text = "BOTTOM"
-        bottomField.textAlignment = NSTextAlignment.center
-    
+        initialize()
     }
     
     // MARK: ViewWillAppear
@@ -66,6 +51,22 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         unsubscribeFromKeyboardNotifications()
     }
     
+    func initialize()
+    {
+        //to check that imageView is loading properly, give it a color:
+        imagePickerView.backgroundColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)
+        imagePickerView.clipsToBounds = true
+        
+        self.topField.delegate = self.textFieldsTopDelegate
+        topField.defaultTextAttributes = memeTextAttributes
+        topField.text = "TOP"
+        topField.textAlignment = NSTextAlignment.center
+        
+        self.bottomField.delegate = self.textFieldsBottomDelegate
+        bottomField.defaultTextAttributes = memeTextAttributes
+        bottomField.text = "BOTTOM"
+        bottomField.textAlignment = NSTextAlignment.center
+    }
     
     // MARK: Keybaord Functions
     @objc func keyboardWillShow(_ notification:Notification) {
@@ -105,44 +106,38 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
     // MARK: ImagePicker Functions
-    //what happens when picking an image and dismissing
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-        imagePickerView.image = image
+        if let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        imagePickerView.image = imagePicked
         imagePickerView.contentMode = .scaleAspectFill
         dismiss(animated: true, completion: nil)
         }
     }
     
-    // MARK: ImagePicker cancelling after picking image
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     
     // MARK: ImagePicker IBActions
-    //pick button action - what happens when click button
+
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
-        present(pickerController, animated: true, completion: nil)
-    }
-    
-    @IBAction func pickAnImageFromCamera(_ sender: UIBarButtonItem) {
-        pickerController.delegate = self
-        pickerController.allowsEditing = false
-        pickerController.sourceType = UIImagePickerControllerSourceType.camera
-        pickerController.cameraCaptureMode = .photo
-        present(pickerController, animated: true, completion: nil)
-    }
- 
-    // MARK: Meme Image Creation
-    func save() {
-        // Create the meme
-        let meme = Meme(topTextField: topField.text!, bottomTextField: bottomField.text!, originalImage: imagePickerView.image!, memeImage: generateMemedImage())
-        //how to save:
+       beginPickingImage(sourceType: .photoLibrary)
         
     }
     
+    @IBAction func pickAnImageFromCamera(_ sender: UIBarButtonItem) {
+        beginPickingImage(sourceType: .camera)
+    }
+    
+    func beginPickingImage(sourceType: UIImagePickerControllerSourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = sourceType
+        present(pickerController, animated: true, completion: nil)
+    }
+    
+    // Generate image for use
     func generateMemedImage() -> UIImage {
       
         // MARK: Hide toolbar and navbar
@@ -152,50 +147,45 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         // MARK: Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         // MARK: Show toolbar and navbar
         self.toolBar.isHidden = false
         self.navigationController?.isToolbarHidden = false
         
-        return memeImage
+        return memedImage
     }
     
-    // MARK: Share image function
+    
+    // MARK: Share Image or Save Image
     @IBAction func shareButton(_ sender: Any) {
-     
-        // image to share
-       let image : UIImage = self.generateMemedImage()
         
-        // set up activity view controller
-        let imageToShare = [ image ]
-        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        let memedImage = generateMemedImage()
+        
+        let imageToShare = memedImage as Any
+        let activityViewController = UIActivityViewController(activityItems: [imageToShare], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
         activityViewController.completionWithItemsHandler =  {
             (activity, success, items, error) in
-            if(success && error == nil){
-                self.save()
-                self.dismiss(animated: true, completion: nil);
-            } else if (error != nil){
-                //log the error
+            if success {
+                let _ = Meme(topTextField: self.topField.text!, bottomTextField: self.bottomField.text!, originalImage: self.imagePickerView.image!, memeImage: self.generateMemedImage())
             }
         }
-        // present the view controller
-        self.present(activityViewController, animated: true, completion: nil)
-
-//        generate a memed image
-//        define an instance of the ActivityViewController
-//        pass the ActivityViewController a memedImage as an activity item
-//        present the ActivityViewController
+        
+        
+        present(activityViewController, animated: true, completion: nil)
         
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        
+       imagePickerView.image = nil
+       
     }
     
-}
-    
 
+    
+}
 
     
