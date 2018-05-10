@@ -12,11 +12,6 @@ class TextFieldsBottomDelegate: NSObject, UITextFieldDelegate {
     
     var bottomFieldTextClicked: Bool = false
     
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//   return true
-//        
-//    }
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text!.isEmpty {
             textField.text = ""
@@ -29,7 +24,6 @@ class TextFieldsBottomDelegate: NSObject, UITextFieldDelegate {
         bottomFieldTextClicked = false
         return true;
     }
-    
     
     
 }

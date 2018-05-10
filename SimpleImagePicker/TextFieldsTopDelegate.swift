@@ -16,7 +16,7 @@ class TextFieldsTopDelegate: NSObject, UITextFieldDelegate {
 //    }
     
     var topFieldTextClicked: Bool = false
-
+  
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text!.isEmpty {
             textField.text = "";
@@ -29,5 +29,6 @@ class TextFieldsTopDelegate: NSObject, UITextFieldDelegate {
         topFieldTextClicked = false
         return true;
     }
+    
     
 }

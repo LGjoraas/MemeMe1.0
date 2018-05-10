@@ -12,12 +12,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UITextFieldDelegate {
  
     // MARK: Properties
+    
     let pickerController = UIImagePickerController()
     let textFieldsTopDelegate = TextFieldsTopDelegate()
     let textFieldsBottomDelegate = TextFieldsBottomDelegate()
     
     
     // MARK: Attributes
+    
     let memeTextAttributes:[String: Any] = [
         NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
         NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
@@ -26,6 +28,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     
     // MARK: Outlets and Declarations
+    
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var takePhotoButton: UIBarButtonItem!
     @IBOutlet weak var topField: UITextField!
@@ -33,28 +36,29 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var toolBar: UIToolbar!
    
     
-    // MARK: ViewDidLoad
+    // MARK: View Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
     }
     
-    // MARK: ViewWillAppear
     override func viewWillAppear(_ animated: Bool) {
-         takePhotoButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        takePhotoButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
     }
     
-    // MARK: ViewWillDisappear
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
     
-    func initialize()
-    {
-        //to check that imageView is loading properly, give it a color:
-        imagePickerView.backgroundColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)
+    func initialize() {
+        imagePickerView.backgroundColor = #colorLiteral(red: 0.8557942708, green: 0.9914394021, blue: 1, alpha: 1)
         imagePickerView.clipsToBounds = true
         
         self.topField.delegate = self.textFieldsTopDelegate
@@ -68,9 +72,10 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         bottomField.textAlignment = NSTextAlignment.center
     }
     
+    
     // MARK: Keybaord Functions
+    
     @objc func keyboardWillShow(_ notification:Notification) {
-        //imagePickerView.frame.size.height = imagePickerView.frame.size.height - getKeyboardHeight(notification)
         if (textFieldsTopDelegate.topFieldTextClicked) {
             view.frame.origin.y = 0
         }
@@ -80,7 +85,6 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
-        //imagePickerView.frame.size.height = imagePickerView.frame.size.height + getKeyboardHeight(notification)
         if (textFieldsTopDelegate.topFieldTextClicked) {
             view.frame.origin.y = 0
         }
@@ -105,6 +109,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
+    
     // MARK: ImagePicker Functions
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -119,7 +124,8 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: ImagePicker IBActions
+    
+    // MARK: ImagePicker Actions
 
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
        beginPickingImage(sourceType: .photoLibrary)
@@ -137,7 +143,9 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         present(pickerController, animated: true, completion: nil)
     }
     
-    // Generate image for use
+   
+    // MARK: Generate Image
+    
     func generateMemedImage() -> UIImage {
       
         // MARK: Hide toolbar and navbar
@@ -159,7 +167,8 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
     
-    // MARK: Share Image or Save Image
+    // MARK: Share Image
+    
     @IBAction func shareButton(_ sender: Any) {
         
         let memedImage = generateMemedImage()
@@ -168,23 +177,23 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         let activityViewController = UIActivityViewController(activityItems: [imageToShare], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         activityViewController.completionWithItemsHandler =  {
-            (activity, success, items, error) in
+            (activityType, success: Bool, returnedItems: [Any]?, error: Error?) in
             if success {
                 let _ = Meme(topTextField: self.topField.text!, bottomTextField: self.bottomField.text!, originalImage: self.imagePickerView.image!, memeImage: self.generateMemedImage())
             }
         }
-        
-        
         present(activityViewController, animated: true, completion: nil)
-        
     }
+    
+    
+    // MARK: Cancel Button
     
     @IBAction func cancelButton(_ sender: Any) {
-       imagePickerView.image = nil
-       
+        imagePickerView.image = nil
+        topField.text = "TOP"
+        bottomField.text = "BOTTOM"
     }
     
-
     
 }
 

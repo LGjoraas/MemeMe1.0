@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5bQ-vk-HRR">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -16,11 +16,11 @@
             <objects>
                 <viewController title="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="SimpleImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikt-2Q-g5M">
-                                <rect key="frame" x="93.5" y="559" width="188" height="44"/>
+                                <rect key="frame" x="238" y="298.5" width="191" height="44.5"/>
                                 <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ikt-2Q-g5M" secondAttribute="height" multiplier="47:11" id="5aW-Xe-NM6"/>
@@ -45,13 +45,13 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VbR-Te-poH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="298.5"/>
                                 <color key="backgroundColor" red="0.440739084" green="0.9127574839" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" red="0.440739084" green="0.9127574839" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <gestureRecognizers/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="425-5r-usn">
-                                <rect key="frame" x="16" y="51" width="343" height="38"/>
+                            <textField opaque="NO" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="425-5r-usn">
+                                <rect key="frame" x="162" y="20" width="343" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343" id="H14-gg-1dJ"/>
                                     <constraint firstAttribute="height" constant="38" id="PGY-Z8-AXR"/>
@@ -61,7 +61,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" spellCheckingType="yes"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dHe-jY-bfK">
-                                <rect key="frame" x="16" y="469" width="343" height="38"/>
+                                <rect key="frame" x="162" y="240.5" width="343" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343" id="Fjl-Kb-7FY"/>
                                     <constraint firstAttribute="height" constant="38" id="M7c-K5-Tp2"/>
@@ -73,17 +73,25 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="425-5r-usn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="51" id="2Ih-CE-JCU"/>
-                            <constraint firstItem="dHe-jY-bfK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HTY-uh-fHG"/>
+                            <constraint firstItem="425-5r-usn" firstAttribute="top" secondItem="VbR-Te-poH" secondAttribute="top" constant="51" id="2Ih-CE-JCU">
+                                <variation key="heightClass=compact-widthClass=compact" constant="20"/>
+                            </constraint>
+                            <constraint firstItem="dHe-jY-bfK" firstAttribute="centerX" secondItem="VbR-Te-poH" secondAttribute="centerX" id="D2r-5X-PQf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="centerX" secondItem="VbR-Te-poH" secondAttribute="centerX" id="HTY-uh-fHG"/>
                             <constraint firstItem="ikt-2Q-g5M" firstAttribute="top" secondItem="VbR-Te-poH" secondAttribute="bottom" id="Oef-iz-7w3"/>
-                            <constraint firstItem="VbR-Te-poH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="QjN-MF-xlU"/>
-                            <constraint firstItem="VbR-Te-poH" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="RWJ-Dz-ivG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="VbR-Te-poH" secondAttribute="top" id="QjN-MF-xlU">
+                                <variation key="heightClass=compact-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="VbR-Te-poH" firstAttribute="trailing" secondItem="ikt-2Q-g5M" secondAttribute="trailing" constant="238" id="RWJ-Dz-ivG"/>
                             <constraint firstItem="ikt-2Q-g5M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RlR-Qk-IhR"/>
-                            <constraint firstItem="425-5r-usn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="XE2-G8-aOc"/>
-                            <constraint firstItem="dHe-jY-bfK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="469" id="aOw-oe-wzt"/>
+                            <constraint firstItem="425-5r-usn" firstAttribute="centerX" secondItem="VbR-Te-poH" secondAttribute="centerX" id="XE2-G8-aOc">
+                                <variation key="heightClass=compact-widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="ikt-2Q-g5M" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="aml-Ig-5Nk"/>
+                            <constraint firstItem="dHe-jY-bfK" firstAttribute="bottom" secondItem="VbR-Te-poH" secondAttribute="bottom" constant="-51" id="es9-cF-bqy">
+                                <variation key="heightClass=compact-widthClass=compact" constant="-20"/>
+                            </constraint>
                             <constraint firstItem="ikt-2Q-g5M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lgO-91-C4n"/>
-                            <constraint firstItem="VbR-Te-poH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zlU-AC-LOX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -119,7 +127,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5bQ-vk-HRR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="43V-Za-Mlh">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
