@@ -20,10 +20,9 @@ class TextFieldsBottomDelegate: NSObject, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
         bottomFieldTextClicked = false
+        textField.resignFirstResponder()
         return true;
     }
-    
-    
+
 }

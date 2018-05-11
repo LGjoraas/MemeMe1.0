@@ -57,19 +57,27 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         unsubscribeFromKeyboardNotifications()
     }
     
+    
+    // MARK: TextField Functions
+    
+    func configureText (textField: UITextField, withText: String) {
+        if let textField = topField {
+            textField.delegate = textFieldsTopDelegate
+        }
+        if let textField = bottomField {
+            textField.delegate = textFieldsBottomDelegate
+        }
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = NSTextAlignment.center
+        textField.text = withText
+    }
+    
     func initialize() {
         imagePickerView.backgroundColor = #colorLiteral(red: 0.8557942708, green: 0.9914394021, blue: 1, alpha: 1)
         imagePickerView.clipsToBounds = true
         
-        self.topField.delegate = self.textFieldsTopDelegate
-        topField.defaultTextAttributes = memeTextAttributes
-        topField.text = "TOP"
-        topField.textAlignment = NSTextAlignment.center
-        
-        self.bottomField.delegate = self.textFieldsBottomDelegate
-        bottomField.defaultTextAttributes = memeTextAttributes
-        bottomField.text = "BOTTOM"
-        bottomField.textAlignment = NSTextAlignment.center
+        configureText(textField: topField, withText: "TOP")
+        configureText(textField: bottomField, withText: "BOTTOM")
     }
     
     
@@ -143,14 +151,24 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         present(pickerController, animated: true, completion: nil)
     }
     
-   
+    // MARK: Toolbar Functions
+    
+    func hideToolbars() {
+        self.toolBar.isHidden = true
+        self.navigationController?.isToolbarHidden = true
+    }
+    
+    func showToolbars() {
+        self.toolBar.isHidden = false
+        self.navigationController?.isToolbarHidden = false
+    }
+    
+    
     // MARK: Generate Image
     
     func generateMemedImage() -> UIImage {
       
-        // MARK: Hide toolbar and navbar
-        self.toolBar.isHidden = true
-        self.navigationController?.isToolbarHidden = true
+        hideToolbars()
         
         // MARK: Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -159,10 +177,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        // MARK: Show toolbar and navbar
-        self.toolBar.isHidden = false
-        self.navigationController?.isToolbarHidden = false
-        
+        showToolbars()
         return memedImage
     }
     
@@ -193,8 +208,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         topField.text = "TOP"
         bottomField.text = "BOTTOM"
     }
-    
-    
+
 }
 
     

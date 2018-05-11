@@ -10,11 +10,6 @@ import UIKit
 
 class TextFieldsTopDelegate: NSObject, UITextFieldDelegate {
     
-//     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//
-//        return true
-//    }
-    
     var topFieldTextClicked: Bool = false
   
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -25,10 +20,9 @@ class TextFieldsTopDelegate: NSObject, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
         topFieldTextClicked = false
+        textField.resignFirstResponder()
         return true;
     }
-    
-    
+
 }
