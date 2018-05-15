@@ -14,8 +14,9 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     // MARK: Properties
     
     let pickerController = UIImagePickerController()
-    let textFieldsTopDelegate = TextFieldsTopDelegate()
-    let textFieldsBottomDelegate = TextFieldsBottomDelegate()
+
+//    let textFieldsTopDelegate = TextFieldsTopDelegate()
+//    let textFieldsBottomDelegate = TextFieldsBottomDelegate()
     
     
     // MARK: Attributes
@@ -60,13 +61,15 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     // MARK: TextField Functions
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text!.isEmpty {
+            textField.text = "";
+        }
+    }
+    
     func configureText (textField: UITextField, withText: String) {
-        if let textField = topField {
-            textField.delegate = textFieldsTopDelegate
-        }
-        if let textField = bottomField {
-            textField.delegate = textFieldsBottomDelegate
-        }
+       
+        textField.delegate = self
         textField.defaultTextAttributes = memeTextAttributes
         textField.textAlignment = NSTextAlignment.center
         textField.text = withText
@@ -79,24 +82,29 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         configureText(textField: topField, withText: "TOP")
         configureText(textField: bottomField, withText: "BOTTOM")
     }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
     
     
     // MARK: Keybaord Functions
     
     @objc func keyboardWillShow(_ notification:Notification) {
-        if (textFieldsTopDelegate.topFieldTextClicked) {
+        if (topField.isEditing) {
             view.frame.origin.y = 0
         }
-        if (textFieldsBottomDelegate.bottomFieldTextClicked) {
+        if (bottomField.isEditing) {
             view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
-        if (textFieldsTopDelegate.topFieldTextClicked) {
+        if (topField.isEditing) {
             view.frame.origin.y = 0
         }
-        if (textFieldsBottomDelegate.bottomFieldTextClicked) {
+        if (bottomField.isEditing) {
             view.frame.origin.y = 0
         }
     }
