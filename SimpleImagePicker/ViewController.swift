@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate, UITextFieldDelegate {
+UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
  
     // MARK: Properties
     
@@ -189,6 +189,17 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         return memedImage
     }
     
+    // MARK: Save Meme
+    
+    func save() {
+        
+        //update the meme
+        let meme = Meme(topTextField: self.topField.text!, bottomTextField: self.bottomField.text!, originalImage: self.imagePickerView.image!, memeImage: self.generateMemedImage())
+        
+        //add meme to memes array ont he Application Delegate
+        let v = UIApplication.shared.delegate as! AppDelegate
+        v.memes.append(meme)
+    }
     
     // MARK: Share Image
     
@@ -202,7 +213,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         activityViewController.completionWithItemsHandler =  {
             (activityType, success: Bool, returnedItems: [Any]?, error: Error?) in
             if success {
-                let _ = Meme(topTextField: self.topField.text!, bottomTextField: self.bottomField.text!, originalImage: self.imagePickerView.image!, memeImage: self.generateMemedImage())
+                self.save()
             }
         }
         present(activityViewController, animated: true, completion: nil)
