@@ -8,16 +8,16 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "collectionReuseIdentifier"
 
 class CollectionViewController: UICollectionViewController {
 
+    
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,21 +48,20 @@ class CollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return memes.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
     
-        // Configure the cell
+        let smallMeme = self.memes[(indexPath as NSIndexPath).row]
+
+        // Set the name and image
+        cell.memeLabelTop.text = smallMeme.topTextField
+        cell.memeLabelBottom.text = smallMeme.bottomTextField
+        cell.memeImage?.image = smallMeme.memeImage
     
         return cell
     }

@@ -15,10 +15,6 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     
     let pickerController = UIImagePickerController()
 
-//    let textFieldsTopDelegate = TextFieldsTopDelegate()
-//    let textFieldsBottomDelegate = TextFieldsBottomDelegate()
-    
-    
     // MARK: Attributes
     
     let memeTextAttributes:[String: Any] = [
