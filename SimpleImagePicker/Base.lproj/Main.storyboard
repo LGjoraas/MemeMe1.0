@@ -170,7 +170,7 @@
         <!--Collection View Controller-->
         <scene sceneID="VM5-X6-a1v">
             <objects>
-                <collectionViewController id="W6k-FS-WeO" sceneMemberID="viewController">
+                <collectionViewController id="W6k-FS-WeO" customClass="CollectionViewController" customModule="SimpleImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="FF0-KD-UIA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,6 +222,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="QXL-NC-68U"/>
+                    <connections>
+                        <outlet property="flowLayout" destination="7sf-2n-e7f" id="xMm-xe-xek"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ydy-gc-wQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

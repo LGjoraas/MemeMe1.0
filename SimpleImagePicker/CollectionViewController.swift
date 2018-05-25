@@ -12,16 +12,26 @@ private let reuseIdentifier = "collectionReuseIdentifier"
 
 class CollectionViewController: UICollectionViewController {
 
-    
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
     }
     
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let space:CGFloat = 3.0
+        let dimensionWidth = (view.frame.size.width - (2 * space)) / 3.0
+        let dimensionHeight = (view.frame.size.height - (2 * space)) / 2.0
+        
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSize(width: dimensionWidth, height: dimensionHeight)
+    
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
