@@ -47,12 +47,17 @@ class TableViewController: UITableViewController {
         return cell
     }
  
+    // Displays meme detail view controller by selecting row
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let memeGeneratorVC = storyboard?.instantiateViewController(withIdentifier: "memeEditor")
-        
-        
+        let memeDetailVC = storyboard?.instantiateViewController(withIdentifier: "memeDetail") as! MemeDetailViewController
+            memeDetailVC.memes = self.memes[(indexPath as NSIndexPath).row]
+            self.navigationController!.pushViewController(memeDetailVC, animated: true)
     }
     
+  
+    
+    // Displays meme Editor view controller using Add button
+  
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

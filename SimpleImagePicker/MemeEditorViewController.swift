@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  SimpleImagePicker
 //
 //  Created by Ryan Gjoraas on 4/16/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate,
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
  
     // MARK: Properties
@@ -37,6 +37,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initialize()
     }
     
@@ -72,8 +73,11 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     }
     
     func initialize() {
+         self.tabBarController?.tabBar.isHidden = true
+        
         imagePickerView.backgroundColor = #colorLiteral(red: 0.8557942708, green: 0.9914394021, blue: 1, alpha: 1)
         imagePickerView.clipsToBounds = true
+       
         
         configureText(textField: topField, withText: "TOP")
         configureText(textField: bottomField, withText: "BOTTOM")
@@ -218,10 +222,11 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     
     // MARK: Cancel Button
     
-    @IBAction func cancelButton(_ sender: Any) {
-        imagePickerView.image = nil
-        topField.text = "TOP"
-        bottomField.text = "BOTTOM"
+    @IBAction func cancelButtonClicked(segue : UIStoryboardSegue) {
+        
+        self.navigationController?.popViewController(animated: true)
+        
+       
     }
 
 }
