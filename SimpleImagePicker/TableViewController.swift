@@ -54,7 +54,6 @@ class TableViewController: UITableViewController {
             self.navigationController!.pushViewController(memeDetailVC, animated: true)
     }
     
-  
     
     // Displays meme Editor view controller using Add button
   

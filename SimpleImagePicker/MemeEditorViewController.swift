@@ -184,8 +184,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
-        showToolbars()
+    
         return memedImage
     }
     
@@ -209,25 +208,24 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         
         let imageToShare = memedImage as Any
         let activityViewController = UIActivityViewController(activityItems: [imageToShare], applicationActivities: nil)
+        
+    
         activityViewController.popoverPresentationController?.sourceView = self.view
         activityViewController.completionWithItemsHandler =  {
             (activityType, success: Bool, returnedItems: [Any]?, error: Error?) in
-            if success {
-                self.save()
+                if success {
+                    self.save()
+                self.navigationController?.popViewController(animated: true)
             }
         }
         present(activityViewController, animated: true, completion: nil)
     }
     
-    
     // MARK: Cancel Button
-    
-    @IBAction func cancelButtonClicked(segue : UIStoryboardSegue) {
-        
+    @IBAction func cancelButtonClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-        
-       
     }
+    
 
 }
 

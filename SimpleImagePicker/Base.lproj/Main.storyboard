@@ -139,8 +139,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="cancel" id="OLs-eU-yma">
                             <connections>
-                                <action selector="cancelButtonClicked:" destination="Xyf-ul-9XO" id="O5q-WQ-UZZ"/>
-                                <segue destination="Xyf-ul-9XO" kind="unwind" unwindAction="cancelButtonClickedWithSegue:" id="RBR-2X-d3g"/>
+                                <action selector="cancelButtonClicked:" destination="BYZ-38-t0r" id="hAw-su-adt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -155,7 +154,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="Xyf-ul-9XO" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="oPz-x9-JFp"/>
             </objects>
             <point key="canvasLocation" x="1754" y="-262"/>
@@ -234,7 +232,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Sent Memes" id="QXL-NC-68U">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mzv-3e-NVw"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mzv-3e-NVw">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="8D6-3M-5zk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
@@ -351,4 +353,7 @@
         <image name="collection_30x30" width="30" height="30"/>
         <image name="table_30x30" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="8D6-3M-5zk"/>
+    </inferredMetricsTieBreakers>
 </document>
