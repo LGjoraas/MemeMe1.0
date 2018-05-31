@@ -184,7 +184,8 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-    
+        
+        //showToolbars()
         return memedImage
     }
     
@@ -195,9 +196,10 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         //update the meme
         let meme = Meme(topTextField: self.topField.text!, bottomTextField: self.bottomField.text!, originalImage: self.imagePickerView.image!, memeImage: self.generateMemedImage())
         
-        //add meme to memes array ont he Application Delegate
+        //add meme to memes array on the Application Delegate
         let v = UIApplication.shared.delegate as! AppDelegate
         v.memes.append(meme)
+        
     }
     
     // MARK: Share Image
@@ -215,7 +217,8 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
             (activityType, success: Bool, returnedItems: [Any]?, error: Error?) in
                 if success {
                     self.save()
-                self.navigationController?.popViewController(animated: true)
+                    //print("Image has been saved!")
+                    self.navigationController?.popViewController(animated: true)
             }
         }
         present(activityViewController, animated: true, completion: nil)
@@ -226,6 +229,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
+   
 
 }
 
