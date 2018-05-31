@@ -14,44 +14,35 @@
         <!--Sent Memes-->
         <scene sceneID="wa2-8K-a5V">
             <objects>
-                <tableViewController id="9HC-D4-H6O" sceneMemberID="viewController">
+                <tableViewController id="9HC-D4-H6O" customClass="TableViewController" customModule="SimpleImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PMc-Qd-tzZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableReuseIdentifier" rowHeight="102" id="qZy-xh-sQG" customClass="TableViewCell" customModule="SimpleImagePicker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="102"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableReuseIdentifier" textLabel="i59-0f-sd3" detailTextLabel="HWn-9B-akj" rowHeight="64" style="IBUITableViewCellStyleSubtitle" id="qZy-xh-sQG" customClass="TableViewCell" customModule="SimpleImagePicker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qZy-xh-sQG" id="XzM-pq-BPk">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="101.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ued-Wd-vdI">
-                                            <rect key="frame" x="59" y="-14" width="240" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PED-fq-oZ0">
-                                            <rect key="frame" x="166" y="11" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i59-0f-sd3">
+                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DkQ-cI-DXe">
-                                            <rect key="frame" x="166" y="70" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HWn-9B-akj">
+                                            <rect key="frame" x="16" y="35.5" width="33" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="bottomLabel" destination="DkQ-cI-DXe" id="D9m-Xc-bZl"/>
-                                    <outlet property="memeImage" destination="Ued-Wd-vdI" id="B6d-K6-gDR"/>
-                                    <outlet property="topLabel" destination="PED-fq-oZ0" id="jIg-OZ-Uvd"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -162,11 +153,7 @@
                                 <action selector="shareButton:" destination="BYZ-38-t0r" id="AiT-oJ-4VY"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="cancel" id="OLs-eU-yma">
-                            <connections>
-                                <action selector="cancelButtonClicked:" destination="BYZ-38-t0r" id="hAw-su-adt"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="cancel" id="OLs-eU-yma"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -176,9 +163,11 @@
                         <outlet property="takePhotoButton" destination="tmi-5l-emh" id="cHW-2V-p4M"/>
                         <outlet property="toolBar" destination="ikt-2Q-g5M" id="aTw-P2-cC7"/>
                         <outlet property="topField" destination="425-5r-usn" id="gix-cf-sDt"/>
+                        <segue destination="0At-hg-1xg" kind="unwind" identifier="unwindMemeEditor" unwindAction="unwindMemeEditorWithSegue:" id="zjd-PK-YMC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="0At-hg-1xg" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="oPz-x9-JFp"/>
             </objects>
             <point key="canvasLocation" x="1754" y="-262"/>
@@ -379,6 +368,6 @@
         <image name="table_30x30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IiD-Y2-7H5"/>
+        <segue reference="8D6-3M-5zk"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -16,30 +16,17 @@ class TableViewController: UITableViewController {
         return appDelegate.memes
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return memes.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableReuseIdentifier", for: indexPath) as! TableViewCell
         
@@ -52,8 +39,7 @@ class TableViewController: UITableViewController {
         
         return cell
     }
- 
-    // Displays meme detail view controller by selecting row
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let memeDetailVC = storyboard?.instantiateViewController(withIdentifier: "memeDetail") as! MemeDetailViewController
             memeDetailVC.memes = self.memes[(indexPath as NSIndexPath).row]
@@ -61,8 +47,10 @@ class TableViewController: UITableViewController {
     
     }
     
+    // MARK: Unwind Segue
+    
     @IBAction func unwindMemeEditor(segue: UIStoryboardSegue) {
-        
+       tableView!.reloadData()
     }
 
 }

@@ -37,7 +37,6 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initialize()
     }
     
@@ -197,9 +196,13 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         let meme = Meme(topTextField: self.topField.text!, bottomTextField: self.bottomField.text!, originalImage: self.imagePickerView.image!, memeImage: self.generateMemedImage())
         
         //add meme to memes array on the Application Delegate
-        let v = UIApplication.shared.delegate as! AppDelegate
-        v.memes.append(meme)
+        let allMemes = UIApplication.shared.delegate as! AppDelegate
+        allMemes.memes.append(meme)
         
+        //pop back to view controller after sharing
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+      
     }
     
     // MARK: Share Image
@@ -207,18 +210,15 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     @IBAction func shareButton(_ sender: Any) {
         
         let memedImage = generateMemedImage()
-        
         let imageToShare = memedImage as Any
         let activityViewController = UIActivityViewController(activityItems: [imageToShare], applicationActivities: nil)
-        
     
         activityViewController.popoverPresentationController?.sourceView = self.view
         activityViewController.completionWithItemsHandler =  {
             (activityType, success: Bool, returnedItems: [Any]?, error: Error?) in
                 if success {
                     self.save()
-                    //print("Image has been saved!")
-                    self.navigationController?.popViewController(animated: true)
+                    self.performSegue(withIdentifier: "unwindMemeEditor", sender: sender)
             }
         }
         present(activityViewController, animated: true, completion: nil)
