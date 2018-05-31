@@ -18,6 +18,7 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
 
@@ -33,8 +34,8 @@ class TableViewController: UITableViewController {
         let smallMeme = self.memes[(indexPath as NSIndexPath).row]
         
         // set the name and image
-        cell.topLabel.text = smallMeme.topTextField
-        cell.bottomLabel.text = smallMeme.bottomTextField
+        //cell.topLabel.text = smallMeme.topTextField
+        //cell.bottomLabel.text = smallMeme.bottomTextField
         cell.memeImage.image = smallMeme.memeImage
         
         return cell

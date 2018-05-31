@@ -46,8 +46,6 @@ class CollectionViewController: UICollectionViewController {
         let smallMeme = self.memes[(indexPath as NSIndexPath).row]
 
 //      Set the name and image
-        cell.memeLabelTop.text = smallMeme.topTextField
-        cell.memeLabelBottom.text = smallMeme.bottomTextField
         cell.memeImage?.image = smallMeme.memeImage
 
         return cell

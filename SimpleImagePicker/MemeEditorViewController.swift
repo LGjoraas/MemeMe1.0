@@ -12,6 +12,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
  
     // MARK: Properties
+    /*var allMemes: [Meme]! {
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        return appDelegate.memes
+    }*/
     
     let pickerController = UIImagePickerController()
 
@@ -184,7 +189,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        //showToolbars()
+//        showToolbars()
         return memedImage
     }
     
@@ -200,8 +205,8 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         allMemes.memes.append(meme)
         
         //pop back to view controller after sharing
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        //navigationController?.popViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
       
     }
     
@@ -219,6 +224,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
                 if success {
                     self.save()
                     self.performSegue(withIdentifier: "unwindMemeEditor", sender: sender)
+                    
             }
         }
         present(activityViewController, animated: true, completion: nil)
