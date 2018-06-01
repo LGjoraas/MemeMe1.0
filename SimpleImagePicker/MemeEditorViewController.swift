@@ -12,11 +12,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
  
     // MARK: Properties
-    /*var allMemes: [Meme]! {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.memes
-    }*/
     
     let pickerController = UIImagePickerController()
 
@@ -82,7 +77,6 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         imagePickerView.backgroundColor = #colorLiteral(red: 0.8557942708, green: 0.9914394021, blue: 1, alpha: 1)
         imagePickerView.clipsToBounds = true
        
-        
         configureText(textField: topField, withText: "TOP")
         configureText(textField: bottomField, withText: "BOTTOM")
     }
@@ -224,7 +218,6 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
                 if success {
                     self.save()
                     self.performSegue(withIdentifier: "unwindMemeEditor", sender: sender)
-                    
             }
         }
         present(activityViewController, animated: true, completion: nil)

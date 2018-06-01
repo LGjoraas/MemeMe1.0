@@ -18,9 +18,7 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
-
 
     // MARK: - Table view data source
 
@@ -30,14 +28,8 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableReuseIdentifier", for: indexPath) as! TableViewCell
-        
         let smallMeme = self.memes[(indexPath as NSIndexPath).row]
-        
-        // set the name and image
-        //cell.topLabel.text = smallMeme.topTextField
-        //cell.bottomLabel.text = smallMeme.bottomTextField
         cell.memeImage.image = smallMeme.memeImage
-        
         return cell
     }
     
@@ -45,7 +37,6 @@ class TableViewController: UITableViewController {
         let memeDetailVC = storyboard?.instantiateViewController(withIdentifier: "memeDetail") as! MemeDetailViewController
             memeDetailVC.memes = self.memes[(indexPath as NSIndexPath).row]
             self.navigationController!.pushViewController(memeDetailVC, animated: true)
-    
     }
     
     // MARK: Unwind Segue

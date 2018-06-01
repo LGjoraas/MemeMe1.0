@@ -41,13 +41,9 @@ class CollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
         let smallMeme = self.memes[(indexPath as NSIndexPath).row]
-
-//      Set the name and image
         cell.memeImage?.image = smallMeme.memeImage
-
         return cell
     }
 
@@ -56,7 +52,5 @@ class CollectionViewController: UICollectionViewController {
         memeGeneratorVC.memes = self.memes[(indexPath as NSIndexPath).row]
         self.navigationController!.pushViewController(memeGeneratorVC, animated: true)
     }
-
-
 
 }
