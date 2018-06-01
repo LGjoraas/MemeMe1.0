@@ -15,7 +15,7 @@
         <scene sceneID="wa2-8K-a5V">
             <objects>
                 <tableViewController id="9HC-D4-H6O" customClass="TableViewController" customModule="SimpleImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PMc-Qd-tzZ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="-1" id="PMc-Qd-tzZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,7 +48,6 @@
                             <outlet property="delegate" destination="9HC-D4-H6O" id="2Ka-tB-94K"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Sent Memes" id="YAi-KS-y8d">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="AGs-Re-PkP">
                             <connections>
@@ -70,7 +69,7 @@
         <!--MemeEditorViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="memeEditor" title="ViewController" id="BYZ-38-t0r" userLabel="MemeEditorViewController" customClass="MemeEditorViewController" customModule="SimpleImagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="memeEditor" title="ViewController" hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" userLabel="MemeEditorViewController" customClass="MemeEditorViewController" customModule="SimpleImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -255,7 +254,7 @@
         <!--Meme Detail View Controller-->
         <scene sceneID="EBi-IS-Ieh">
             <objects>
-                <viewController storyboardIdentifier="memeDetail" id="Fzm-NO-5eH" customClass="MemeDetailViewController" customModule="SimpleImagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="memeDetail" hidesBottomBarWhenPushed="YES" id="Fzm-NO-5eH" customClass="MemeDetailViewController" customModule="SimpleImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9lW-rY-8fZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UITabBarDelegate {
 
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate

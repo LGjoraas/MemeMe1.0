@@ -31,7 +31,11 @@ class CollectionViewController: UICollectionViewController {
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: dimensionWidth, height: dimensionHeight)
 
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView?.reloadData()
     }
 
 //    MARK: UICollectionViewDataSource
@@ -52,5 +56,4 @@ class CollectionViewController: UICollectionViewController {
         memeGeneratorVC.memes = self.memes[(indexPath as NSIndexPath).row]
         self.navigationController!.pushViewController(memeGeneratorVC, animated: true)
     }
-
 }
