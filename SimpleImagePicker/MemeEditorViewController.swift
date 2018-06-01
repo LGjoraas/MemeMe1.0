@@ -189,7 +189,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-//        showToolbars()
+        showToolbars()
         return memedImage
     }
     
@@ -233,6 +233,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     // MARK: Cancel Button
     @IBAction func cancelButtonClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
     }
     
    
