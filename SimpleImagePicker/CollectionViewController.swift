@@ -30,14 +30,13 @@ class CollectionViewController: UICollectionViewController {
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: dimensionWidth, height: dimensionHeight)
-
-        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView?.reloadData()
     }
 
+    
 //    MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

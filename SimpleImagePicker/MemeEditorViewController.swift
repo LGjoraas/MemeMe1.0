@@ -87,7 +87,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     }
     
     
-    // MARK: Keybaord Functions
+    // MARK: Keyboard Functions
     
     @objc func keyboardWillShow(_ notification:Notification) {
         if (topField.isEditing) {
@@ -143,7 +143,6 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
 
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
        beginPickingImage(sourceType: .photoLibrary)
-        
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: UIBarButtonItem) {
@@ -156,6 +155,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         pickerController.sourceType = sourceType
         present(pickerController, animated: true, completion: nil)
     }
+    
     
     // MARK: Toolbar Functions
     
@@ -176,7 +176,6 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
       
         hideToolbars()
         
-        // MARK: Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         
@@ -186,6 +185,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         showToolbars()
         return memedImage
     }
+    
     
     // MARK: Save Meme
     
@@ -197,12 +197,8 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         //add meme to memes array on the Application Delegate
         let allMemes = UIApplication.shared.delegate as! AppDelegate
         allMemes.memes.append(meme)
-        
-        //pop back to view controller after sharing
-        //navigationController?.popViewController(animated: true)
-        //dismiss(animated: true, completion: nil)
-      
     }
+    
     
     // MARK: Share Image
     
@@ -223,14 +219,12 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         present(activityViewController, animated: true, completion: nil)
     }
     
+    
     // MARK: Cancel Button
+    
     @IBAction func cancelButtonClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-        //dismiss(animated: true, completion: nil)
     }
-    
-   
-
 }
 
     

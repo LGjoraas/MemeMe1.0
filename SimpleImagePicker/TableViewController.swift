@@ -20,7 +20,8 @@ class TableViewController: UITableViewController, UITabBarDelegate {
         super.viewDidLoad()
     }
 
-    // MARK: - Table view data source
+    
+    // MARK: Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memes.count
@@ -39,10 +40,10 @@ class TableViewController: UITableViewController, UITabBarDelegate {
             self.navigationController!.pushViewController(memeDetailVC, animated: true)
     }
     
+    
     // MARK: Unwind Segue
     
     @IBAction func unwindMemeEditor(segue: UIStoryboardSegue) {
        tableView!.reloadData()
     }
-
 }
