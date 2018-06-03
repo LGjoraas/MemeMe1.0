@@ -23,9 +23,9 @@ class CollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let space:CGFloat = 3.0
-        let dimensionWidth = (view.frame.size.width - (2 * space)) / 3.0
-        let dimensionHeight = (view.frame.size.height - (2 * space)) / 2.0
+        let space:CGFloat = 4.0
+        let dimensionWidth = (view.frame.size.width - (3 * space)) / 3.0
+        let dimensionHeight = (view.frame.size.height - (3 * space)) / 2.0
         
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
