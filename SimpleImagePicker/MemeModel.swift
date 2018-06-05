@@ -2,7 +2,7 @@
 //  MemeModel.swift
 //  SimpleImagePicker
 //
-//  Created by Ryan Gjoraas on 4/27/18.
+//  Created by Lindsey Gjoraas on 4/27/18.
 //  Copyright © 2018 Developed by Gjoraas. All rights reserved.
 //
 
