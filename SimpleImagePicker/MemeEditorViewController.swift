@@ -30,8 +30,8 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     @IBOutlet weak var takePhotoButton: UIBarButtonItem!
     @IBOutlet weak var topField: UITextField!
     @IBOutlet weak var bottomField: UITextField!
-    @IBOutlet weak var toolBar: UIToolbar!
-   
+    @IBOutlet weak var topToolBar: UIToolbar!
+    @IBOutlet weak var bottomToolBar: UIToolbar!
     
     // MARK: View Functions
     
@@ -41,6 +41,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         takePhotoButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
     }
@@ -59,7 +60,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text!.isEmpty {
-            textField.text = "";
+            textField.text = ""
         }
     }
     
@@ -119,8 +120,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     }
     
     func unsubscribeFromKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -159,14 +159,9 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     
     // MARK: Toolbar Functions
     
-    func hideToolbars() {
-        self.toolBar.isHidden = true
-        self.navigationController?.isToolbarHidden = true
-    }
-    
-    func showToolbars() {
-        self.toolBar.isHidden = false
-        self.navigationController?.isToolbarHidden = false
+    func hideBothToolbars(hide: Bool) {
+        self.topToolBar.isHidden = hide
+        self.bottomToolBar.isHidden = hide
     }
     
     
@@ -174,7 +169,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     
     func generateMemedImage() -> UIImage {
       
-        hideToolbars()
+        hideBothToolbars(hide: true)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -182,7 +177,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        showToolbars()
+        hideBothToolbars(hide: false)
         return memedImage
     }
     
@@ -223,7 +218,7 @@ UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate {
     // MARK: Cancel Button
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
